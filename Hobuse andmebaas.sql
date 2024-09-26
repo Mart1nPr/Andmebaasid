@@ -32,10 +32,10 @@ CREATE TABLE `hobune` (
   `TervislikSeisundiID` bigint unsigned NOT NULL,
   `TreeningID` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `hobune_varustusid_foreign` (`VarustusID`),
   KEY `hobune_ownerid_foreign` (`OwnerID`),
-  KEY `hobune_tervislikseisundiid_foreign` (`TervislikSeisundiID`),
   KEY `hobune_treeningid_foreign` (`TreeningID`),
+  KEY `hobune_varustusid_foreign` (`VarustusID`),
+  KEY `hobune_tervislikseisundiid_foreign` (`TervislikSeisundiID`),
   KEY `hobune_tallid_foreign` (`TallID`),
   CONSTRAINT `hobune_ownerid_foreign` FOREIGN KEY (`OwnerID`) REFERENCES `omanik` (`id`),
   CONSTRAINT `hobune_tallid_foreign` FOREIGN KEY (`TallID`) REFERENCES `tall` (`id`),
@@ -64,6 +64,8 @@ DROP TABLE IF EXISTS `omanik`;
 CREATE TABLE `omanik` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `Nimi` varchar(255) NOT NULL,
+  `Aadress` varchar(255) NOT NULL,
+  `Telefon` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -86,11 +88,12 @@ DROP TABLE IF EXISTS `tall`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tall` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `Tall` varchar(255) NOT NULL,
   `Talliboksi number` varchar(255) NOT NULL,
-  `TöötajadID` bigint unsigned NOT NULL,
+  `TöötajaID` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `tall_töötajadid_foreign` (`TöötajadID`),
-  CONSTRAINT `tall_töötajadid_foreign` FOREIGN KEY (`TöötajadID`) REFERENCES `töötajad` (`id`)
+  KEY `tall_töötajaid_foreign` (`TöötajaID`),
+  CONSTRAINT `tall_töötajaid_foreign` FOREIGN KEY (`TöötajaID`) REFERENCES `töötajad` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -137,7 +140,7 @@ DROP TABLE IF EXISTS `treeninggraafik`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `treeninggraafik` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `Päev` bigint NOT NULL,
+  `Päev` date NOT NULL,
   `Kava` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -210,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-26  9:40:41
+-- Dump completed on 2024-09-26 11:13:32
