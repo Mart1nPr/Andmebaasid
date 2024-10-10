@@ -1,8 +1,6 @@
 create database stock;
 use stock;
 
-drop table daily_data;
-
 create table DELL_daily_data (
 Date date,
 Open float,
@@ -12,8 +10,6 @@ Low float,
 Adj_Close float,
 Volume int
 );
-
-select * from DELL_daily_data;
 
 create table IBM_daily_data (
 Date date,
@@ -37,8 +33,6 @@ Adj_Close float,
 Volume float
 );
 
-select * from IBM_daily_data;
-
 create table MSFT_daily_data (
 Date date,
 Open float,
@@ -48,8 +42,6 @@ Low float,
 Adj_Close float,
 Volume float
 );
-
-select * from MSFT_daily_data;
 
 create table SONY_daily_data (
 Date date,
@@ -61,8 +53,6 @@ Adj_Close float,
 Volume float
 );
 
-select * from SONY_daily_data;
-
 create table VZ_daily_data (
 Date date,
 Open float,
@@ -73,7 +63,20 @@ Adj_Close float,
 Volume float
 );
 
-select * from VZ_daily_data;
+CREATE TABLE daily_data (
+Date DATE,
+Open FLOAT,
+High FLOAT,
+Close FLOAT,
+Low FLOAT,
+Adj_Close FLOAT,
+Volume FLOAT,
+Company VARCHAR(50)
+);
+
+drop table daily_data;
+
+select * from daily_data;
 
 CREATE VIEW All_daily_data AS
 SELECT 'DELL' AS Company, a.* FROM DELL_daily_data a
@@ -90,4 +93,7 @@ SELECT 'VZ' AS Company, f.* FROM VZ_daily_data f;
 
 select * from All_daily_data;
 
-select * from stock.all_daily_data;
+INSERT INTO daily_data (Date, Open, High, Low, Close, Adj_Close, Volume, Company)
+SELECT Date, Open, High, Low, Close, Adj_Close, Volume, Company FROM All_daily_data;
+
+select company, count(*) from daily_data group by company;
