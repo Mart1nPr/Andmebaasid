@@ -97,3 +97,10 @@ INSERT INTO daily_data (Date, Open, High, Low, Close, Adj_Close, Volume, Company
 SELECT Date, Open, High, Low, Close, Adj_Close, Volume, Company FROM All_daily_data;
 
 select company, count(*) from daily_data group by company;
+
+select company, count(date) as date_count from daily_stocks group by company;
+
+SELECT Company, COUNT(Date) AS Date_Count FROM daily_data GROUP BY Company;
+
+SELECT company, MAX(high) as max_high, MAX(date) as date_of_max_high 
+FROM daily_data GROUP BY company; 
