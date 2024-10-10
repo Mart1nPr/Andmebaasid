@@ -75,22 +75,19 @@ Volume float
 
 select * from VZ_daily_data;
 
-create view All_daily_data as
-select "DELL", a.* from dell_daily_data a
-union all
-select "IBM", b.* from ibm_daily_data b
-union all
-select "INTC", c.* from intc_daily_data c
-union all
-select "MSFT", d.* from msft_daily_data d
-union all
-select "SONY", e.* from sony_daily_data e
-union all
-select "VZ", f.* from vz_daily_data f;
+CREATE VIEW All_daily_data AS
+SELECT 'DELL' AS Company, a.* FROM DELL_daily_data a
+UNION ALL
+SELECT 'IBM' AS Company, b.* FROM IBM_daily_data b
+UNION ALL
+SELECT 'INTC' AS Company, c.* FROM INTC_daily_data c
+UNION ALL
+SELECT 'MSFT' AS Company, d.* FROM MSFT_daily_data d
+UNION ALL
+SELECT 'SONY' AS Company, e.* FROM SONY_daily_data e
+UNION ALL
+SELECT 'VZ' AS Company, f.* FROM VZ_daily_data f;
 
 select * from All_daily_data;
 
-
-
-
-select * from all_daily_data;
+select * from stock.all_daily_data;
