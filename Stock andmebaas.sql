@@ -76,16 +76,21 @@ Volume float
 select * from VZ_daily_data;
 
 create view All_daily_data as
-select * from dell_daily_data
+select "DELL", a.* from dell_daily_data a
 union all
-select * from IBM_daily_data
+select "IBM", b.* from ibm_daily_data b
 union all
-select * from INTC_daily_data
+select "INTC", c.* from intc_daily_data c
 union all
-select * from MSFT_daily_data
+select "MSFT", d.* from msft_daily_data d
 union all
-select * from SONY_daily_data
-union all 
-select * from VZ_daily_data;
+select "SONY", e.* from sony_daily_data e
+union all
+select "VZ", f.* from vz_daily_data f;
+
+select * from All_daily_data;
+
+
+
 
 select * from all_daily_data;
