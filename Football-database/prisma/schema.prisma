@@ -17,10 +17,32 @@ model player {
   id        Int      @id @default(autoincrement())
   name      String
   birthdate DateTime
+  club      club?    @relation(fields: [clubId], references: [id])
+  clubId    Int?
 }
 
-model Club {
+model club {
+  id          Int      @id @default(autoincrement())
+  city        String
+  name        String
+  player      player[]
+  coach       coach[]
+  homegame    game[]   @relation("homeGame")
+  foreigngame game[]   @relation("foreignGame")
+}
+
+model coach {
   id   Int    @id @default(autoincrement())
-  city String
   name String
+  club club[]
+}
+
+model game {
+  id            Int      @id @default(autoincrement())
+  time          DateTime
+  score         String
+  homeClub      Int
+  foreignClub   Int
+  homeClubid    club?    @relation("homeGame", fields: [homeClub], references: [id])
+  foreignClubid club?    @relation("foreignGame", fields: [foreignClub], references: [id])
 }
