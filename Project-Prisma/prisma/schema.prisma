@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Team1 {
+  id Int @id @default(autoincrement())
+  nimi String
+  vanus Int
+  meeskond Int
+}
+
+model Team2 {
+  id Int @id @default(autoincrement())
+  nimi String
+  vanus Int
+  meeskond Int
+}
+
+
