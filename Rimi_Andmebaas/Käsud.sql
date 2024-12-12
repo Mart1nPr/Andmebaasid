@@ -45,8 +45,15 @@ select state, count(*) as order_count
 from customer_order_addresses
 group by state;
 
+-- Vaade store_order_addresses (lisatud enne store_customer_count vaate loomist)
+create or replace view store_order_addresses as
+select o.storeid, 
+       a.state
+from `rimi-database`.order o
+join `rimi-database`.store s on o.storeid = s.id
+join `rimi-database`.address a on s.addressid = a.id;
 
--- Vaade store_customer_count. See väljastab info, et millistes maakondades milliste maakondade ostjad on oste sooritanud – vaates olgu väljad: store_state, customer_state, count. Kasutage vaateid store_order_addresses ja customer_order_addresses.
+-- Vaade store_customer_count. See väljastab info, et millistes maakondades milliste maakondade ostjad on oste sooritanud – vaates olgu väljad: store_state, customer_state, count.
 create or replace view store_customer_count as
 select soa.state as store_state, 
        csa.state as customer_state,
@@ -61,11 +68,12 @@ select city, count(*) as order_count
 from customer_order_addresses
 group by city;
 
--- Vaade customer_count. Leidke iga kliendi kohta, mitme tellimuseest on ta maksnud. Väljastage kliendi ees- ja perekonnanimi ning tellimuste arv, mille status on ’paid’.
+-- Vaade customer_count. Leidke iga kliendi kohta, mitme tellimuse eest on ta maksnud. Väljastage kliendi ees- ja perekonnanimi ning tellimuste arv, mille status on ’paid’.
 create or replace view customer_count as
 select c.firstname, c.lastname, count(*) as paid_order_count
 from `rimi-database`.customer c
 join `rimi-database`.order o on c.id = o.customerid
 where o.status = 'paid'
 group by c.firstname, c.lastname;
+
 
