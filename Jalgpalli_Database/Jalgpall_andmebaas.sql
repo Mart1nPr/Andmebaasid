@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `jalgpall` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `jalgpall`;
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
--- Host: localhost    Database: jalgpall
+-- Host: 127.0.0.1    Database: jalgpall
 -- ------------------------------------------------------
 -- Server version	8.0.41
 
@@ -69,6 +67,7 @@ CREATE TABLE `coach` (
 
 LOCK TABLES `coach` WRITE;
 /*!40000 ALTER TABLE `coach` DISABLE KEYS */;
+INSERT INTO `coach` VALUES (123,'Martin','Pruus',1,'2025-02-09 18:26:52');
 /*!40000 ALTER TABLE `coach` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,6 +95,7 @@ CREATE TABLE `coach_has_club` (
 
 LOCK TABLES `coach_has_club` WRITE;
 /*!40000 ALTER TABLE `coach_has_club` DISABLE KEYS */;
+INSERT INTO `coach_has_club` VALUES (123,1),(123,2);
 /*!40000 ALTER TABLE `coach_has_club` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,6 +146,7 @@ CREATE TABLE `formation` (
 
 LOCK TABLES `formation` WRITE;
 /*!40000 ALTER TABLE `formation` DISABLE KEYS */;
+INSERT INTO `formation` VALUES (1,'4-4-2','2025-02-09 18:31:33'),(2,'4-3-3','2025-02-09 18:31:33');
 /*!40000 ALTER TABLE `formation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,6 +177,7 @@ CREATE TABLE `game` (
 
 LOCK TABLES `game` WRITE;
 /*!40000 ALTER TABLE `game` DISABLE KEYS */;
+INSERT INTO `game` VALUES (123,'1','2',2,1,'1','2','2024-02-10 18:00:00','2025-02-09 18:29:46');
 /*!40000 ALTER TABLE `game` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,6 +204,7 @@ CREATE TABLE `gameplayer` (
 
 LOCK TABLES `gameplayer` WRITE;
 /*!40000 ALTER TABLE `gameplayer` DISABLE KEYS */;
+INSERT INTO `gameplayer` VALUES (123,1),(123,2),(123,3),(123,4),(123,5),(123,6);
 /*!40000 ALTER TABLE `gameplayer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,6 +242,10 @@ INSERT INTO `player` VALUES (1,'Märt','Kask',50000,1,1,'2025-02-05 13:58:26'),(
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'jalgpall'
+--
+
+--
 -- Dumping routines for database 'jalgpall'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +258,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-05 14:02:34
+-- Dump completed on 2025-02-09 18:49:22
